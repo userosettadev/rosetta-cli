@@ -1,0 +1,52 @@
+go:
+  ignoreFileNames:
+    - secret.go
+  ignoreFileNameSuffixes:
+    - _test.go
+  ignoreDirs:
+    - itest
+    - .git
+    - vendor
+  extension: ".go"
+
+python:
+  ignoreFileNames: []
+  ignoreFileNamePrefixes: 
+    - "test_"
+  ignoreFileNameSuffixes:
+    - _test.py
+  ignoreDirs:
+    - .git
+  extension: ".py"
+
+java:
+  ignoreFileNames:
+    - package-info.java
+  ignoreFileNameSuffixes: []
+  ignoreDirs:
+    - .git
+  extension: ".java"
+
+javascript:
+  ignoreFileNames: []
+  ignoreFileNameSuffixes: []
+  ignoreDirs: []
+  extension: ".js"
+
+typescript:
+  ignoreFileNames: []
+  ignoreFileNameSuffixes: []
+  ignoreDirs: []
+  extension: ".ts"
+
+csharp:
+  ignoreFileNames: []
+  ignoreFileNameSuffixes: []
+  ignoreDirs: []
+  extension: ".cs"
+
+rust:
+  ignoreFileNames: []
+  ignoreFileNameSuffixes: []
+  ignoreDirs: []
+  extension: ".rs"

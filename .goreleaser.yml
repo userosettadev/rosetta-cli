@@ -1,0 +1,78 @@
+builds:
+ - binary: rosetta-cli
+   goos:
+     - darwin
+     - linux
+     - windows
+   goarch:
+     - amd64
+     - arm64
+   env:
+     - CGO_ENABLED=0
+   ldflags:
+     - -s -w -X github.com/userosettadev/rosetta-cli/build.Version={{.Version}}
+
+release:
+ prerelease: auto
+
+universal_binaries:
+ - replace: true
+
+brews:
+ -
+   name: rosetta
+   homepage: "https://github.com/userosettadev/rosetta-cli"
+   repository:
+     owner: userosettadev
+     name: homebrew-rosetta
+   commit_author:
+     name: Effi
+     email: effi@userosetta.com
+
+nfpms:
+  # note that this is an array of nfpm configs
+  -
+    # ID of the nfpm config, must be unique.
+    # Defaults to "default".
+    id: rosetta
+
+    # Name of the package.
+    # Defaults to `ProjectName`.
+    package_name: rosetta
+
+    # Your app's vendor.
+    # Default is empty.
+    vendor: rosetta
+
+    # Template to your app's homepage.
+    # Default is empty.
+    homepage: "https://github.com/userosettadev/docs"
+
+    # Your app's maintainer (probably you).
+    # Default is empty.
+    maintainer: Effi <effi@userosetta.com>
+
+    # Template to your app's description.
+    # Default is empty.
+    description: |-
+      Generates OpenAPI Specification (OAS) from code
+
+    # Your app's license.
+    # Default is empty.
+    license: Apache 2.0
+
+    # Formats to be generated.
+    formats:
+      - apk
+      - deb
+      - rpm
+
+    # Section.
+    section: default
+
+    # Priority.
+    priority: extra
+
+
+checksum:
+ name_template: 'checksums.txt'
