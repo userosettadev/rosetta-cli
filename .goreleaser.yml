@@ -18,16 +18,16 @@ release:
 universal_binaries:
  - replace: true
 
-brews:
- -
-   name: rosetta
-   homepage: "https://github.com/userosettadev/rosetta-cli"
-   repository:
-     owner: userosettadev
-     name: homebrew-rosetta
-   commit_author:
-     name: Effi
-     email: effi@userosetta.com
+#brews:
+# -
+#   name: rosetta
+#   homepage: "https://github.com/userosettadev/rosetta-cli"
+#   repository:
+#     owner: userosettadev
+#     name: homebrew-rosetta
+#   commit_author:
+#     name: Effi
+#     email: effi@userosetta.com
 
 nfpms:
   # note that this is an array of nfpm configs
