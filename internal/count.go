@@ -4,11 +4,11 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/userosettadev/rosetta-cli/internal/common"
 	"github.com/spf13/cobra"
+	"github.com/userosettadev/rosetta-cli/internal/common"
 )
 
-func GetCommandCountToken() *cobra.Command {
+func GetCommandCountTokens() *cobra.Command {
 
 	var lang string
 	var verbose bool
@@ -25,16 +25,7 @@ func GetCommandCountToken() *cobra.Command {
 			// by now flags have been parsed successfully, so we don't need to show usage on any errors
 			cmd.Root().SilenceUsage = true
 
-			lang, err := common.GetLanguage(lang)
-			if err != nil {
-				return err
-			}
-
-			code, err := common.ExtractCode(args[0], lang, verbose)
-			if err != nil {
-				return err
-			}
-			tokens, err := common.CountTokensMultipleText(code)
+			tokens, err := CountTokens(args[0], lang, verbose)
 			if err != nil {
 				return err
 			}
@@ -47,4 +38,24 @@ func GetCommandCountToken() *cobra.Command {
 	cmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "Enable verbose output")
 
 	return &cmd
+}
+
+func CountTokens(root string, lang string, verbose bool) (int, error) {
+
+	lang, err := common.GetLanguage(lang)
+	if err != nil {
+		return -1, err
+	}
+
+	code, err := common.ExtractCode(root, lang, verbose)
+	if err != nil {
+		return -1, err
+	}
+
+	res, err := common.CountTokensMultipleText(code)
+	if err != nil {
+		return -1, err
+	}
+
+	return res, nil
 }
