@@ -1,4 +1,4 @@
-[![CI](https://github.com/userosettadev/rosetta-cli/workflows/build/badge.svg)](https://github.com/userosettadev/rosetta-cli/actions)
+[![CI](https://github.com/userosettadev/rosetta-cli/actions/workflows/go.yml/badge.svg)](https://github.com/userosettadev/rosetta-cli/actions)
 
 # Getting Started
 Rosetta is a service that converts code into OpenAPI specification.
