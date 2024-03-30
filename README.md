@@ -1,31 +1,52 @@
-# rosetta-cli
+# Getting Started
+Rosetta is a service that converts code into OpenAPI specification.
 
-## Install on macOS with Brew
+### Limitations
+- **Number of Runs**: The number of runs allowed is based on your account type.
+- **Project Size**: The maximum project size that Rosetta can analyze is 70K tokens.
+
+## Setup
+Before using Rosetta, you need to set the `ROSETTA_TENANT` environment variable with your tenant ID:
+```
+export ROSETTA_TENANT=<your_tenant_id>
+```
+
+## Installation
+
+### macOS
+Rosetta can be installed on macOS using [Homebrew](https://brew.sh/):
 ```bash
-brew tap rosetta/homebrew-rosetta
+brew tap userosettadev/homebrew-rosetta
 brew install rosetta
 ```
 
-## Run using docker
-### Setup tenant
+### Windows
+For Windows, you can download the Rosetta executable from the [releases page](TODO).
+
+1. Visit the releases page and download the latest version of Rosetta for Windows.
+2. Extract the downloaded archive.
+3. Move the `rosetta.exe` file to a directory in your system's `PATH`.
+
+## Verify Installation
+After the installation is complete, you can verify it by running the following command (or executing the appropriate method for your installation):
 ```
-export ROSETTA_TENANT=<my-tenant>
-```
-### Create Custom Configuration YAML
-To tailor the behavior of the filters, create a custom configuration YAML file using the following command:
-```bash
-docker run --rm -v $PWD:/app -w /app -e ROSETTA_TENANT=$ROSETTA_TENANT effoeffi/rosetta:main config
-```
-### Count tokens
-Use the following command to count the number of tokens in the specified language (e.g. go, java, js, python):
-```bash
-docker run --rm -v $PWD:/app -w /app -e ROSETTA_TENANT=$ROSETTA_TENANT effoeffi/rosetta:main count /rest -l go
+rosetta version
 ```
 
-Generate OpenAPI Specification
-```bash
-docker run --rm -v $PWD:/app -w /app -e ROSETTA_TENANT=$ROSETTA_TENANT effoeffi/rosetta:main gen /rest -l go
+## Running Rosetta
+To generate an OpenAPI specification from your code using Rosetta, you can use the `gen` command followed by the path to your code and the programming language.
+```
+rosetta gen /path/to/code -l <language>
 ```
 
-### Debug on localhost
-Use `-e ROSETTA_HOME=localhost:8080 --network=host`
+### Example
+To generate an OpenAPI specification from Go code located in the `./myapp` directory, you would run:
+```
+rosetta gen ./myapp -l go
+```
+This command will analyze the Go code in the `./myapp` directory and generate an OpenAPI specification based on the code.
+
+### Docker
+Rosetta is also available as a Docker image:
+```bash
+docker run --rm -v $PWD:/app -w /app -e ROSETTA_TENANT=$ROSETTA_TENANT effoeffi/rosetta:main gen /path/to/code -l go
