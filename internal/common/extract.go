@@ -10,11 +10,15 @@ import (
 	"github.com/userosettadev/rosetta-cli/internal/config"
 )
 
+const (
+	LangGo = "go"
+)
+
 func GetLanguage(input string) (string, error) {
 
 	res := strings.ToLower(input)
-	if res == "golang" || res == "go" {
-		return "go", nil
+	if res == "golang" || res == LangGo {
+		return LangGo, nil
 	} else if res == "python" {
 		return "python", nil
 	} else if res == "java" {
