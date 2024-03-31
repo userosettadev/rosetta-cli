@@ -8,9 +8,9 @@ Rosetta is a service that converts code into OpenAPI specification.
 - **Project Size**: The maximum project size that Rosetta can analyze is 70K tokens.
 
 ## Setup
-Before using Rosetta, you need to set the `ROSETTA_TENANT` environment variable with your tenant ID:
+Before using Rosetta, you need to set the `ROSETTA_API_KEY` environment variable:
 ```
-export ROSETTA_TENANT=<your_tenant_id>
+export ROSETTA_API_KEY=<your_api_key>
 ```
 
 ## Installation
@@ -51,4 +51,4 @@ This command will analyze the Go code in the `./myapp` directory and generate an
 ### Docker
 Rosetta is also available as a Docker image:
 ```bash
-docker run --rm -v $PWD:/app -w /app -e ROSETTA_TENANT=$ROSETTA_TENANT effoeffi/rosetta:main gen /path/to/code -l go
+docker run --rm -v $PWD:/app -w /app -e ROSETTA_API_KEY=$ROSETTA_API_KEY effoeffi/rosetta:main gen /path/to/code -l go
