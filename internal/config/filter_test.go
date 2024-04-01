@@ -6,9 +6,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/stretchr/testify/require"
 	"github.com/userosettadev/rosetta-cli/internal/common"
 	"github.com/userosettadev/rosetta-cli/internal/config"
-	"github.com/stretchr/testify/require"
 )
 
 type MockFileInfo struct {
