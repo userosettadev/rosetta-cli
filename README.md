@@ -8,7 +8,7 @@ Rosetta is a service that converts code into OpenAPI specification.
 ### Limitations
 - **Supported Languages**: Go
 - **Number of Runs**: The number of runs allowed is based on your account type.
-- **Project Size**: The maximum project size that Rosetta can analyze is 70K tokens.
+- **Project Size**: The maximum project size is based on your account type.
 
 ## Installation
 
