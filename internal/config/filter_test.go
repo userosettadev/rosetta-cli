@@ -1,7 +1,6 @@
 package config_test
 
 import (
-	_ "embed"
 	"os"
 	"testing"
 	"time"
@@ -11,17 +10,17 @@ import (
 	"github.com/userosettadev/rosetta-cli/internal/config"
 )
 
-type MockFileInfo struct {
+type mockFileInfo struct {
 	FileName    string
 	IsDirectory bool
 }
 
-func (mfi MockFileInfo) Name() string       { return mfi.FileName }
-func (mfi MockFileInfo) Size() int64        { return int64(8) }
-func (mfi MockFileInfo) Mode() os.FileMode  { return os.ModePerm }
-func (mfi MockFileInfo) ModTime() time.Time { return time.Now() }
-func (mfi MockFileInfo) IsDir() bool        { return mfi.IsDirectory }
-func (mfi MockFileInfo) Sys() interface{}   { return nil }
+func (m mockFileInfo) Name() string       { return m.FileName }
+func (m mockFileInfo) Size() int64        { return int64(8) }
+func (m mockFileInfo) Mode() os.FileMode  { return os.ModePerm }
+func (m mockFileInfo) ModTime() time.Time { return time.Now() }
+func (m mockFileInfo) IsDir() bool        { return m.IsDirectory }
+func (m mockFileInfo) Sys() interface{}   { return nil }
 
 func TestBuildFilter(t *testing.T) {
 
@@ -39,7 +38,7 @@ func TestFilter_Ignore(t *testing.T) {
 	filter, err := config.GetInstance().BuildFilter(lang)
 	require.NoError(t, err)
 	ignore, err := filter.Ignore("cpa-network/api/tests/test_advertiser.py",
-		MockFileInfo{
+		mockFileInfo{
 			FileName:    "test_advertiser.py",
 			IsDirectory: false,
 		})
