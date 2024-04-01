@@ -1,5 +1,6 @@
 [![CI](https://github.com/userosettadev/rosetta-cli/actions/workflows/go.yml/badge.svg)](https://github.com/userosettadev/rosetta-cli/actions)
 [![Go Report Card](https://goreportcard.com/badge/github.com/userosettadev/rosetta-cli)](https://goreportcard.com/report/github.com/userosettadev/rosetta-cli)
+[![codecov](https://codecov.io/gh/userosettadev/rosetta-cli/graph/badge.svg?token=XOWMEPON83)](https://codecov.io/gh/userosettadev/rosetta-cli)
 
 # Getting Started
 Rosetta is a service that converts code into OpenAPI specification.
