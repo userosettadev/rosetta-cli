@@ -3,8 +3,8 @@ package common_test
 import (
 	"testing"
 
-	"github.com/userosettadev/rosetta-cli/internal/common"
 	"github.com/stretchr/testify/require"
+	"github.com/userosettadev/rosetta-cli/internal/common"
 )
 
 func TestCountTokens(t *testing.T) {
