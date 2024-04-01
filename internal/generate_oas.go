@@ -48,9 +48,9 @@ func GetCommandGenerateOAS() *cobra.Command {
 func GenerateOAS(root string, lang string, specPath string, verbose bool,
 	convert func(string, []*pb.File, string, []byte) (string, error)) error {
 
-	tenant := env.GetInstance().GetTenant()
-	if tenant == "" || len(tenant) > 40 {
-		return fmt.Errorf("please set %s environment variable", env.EnvTenantKey)
+	apiKey := env.GetInstance().GetApiKey()
+	if apiKey == "" || len(apiKey) > 40 {
+		return fmt.Errorf("please set %s environment variable", env.EnvKeyApiKey)
 	}
 
 	lang, err := common.GetLanguage(lang)
@@ -71,7 +71,7 @@ func GenerateOAS(root string, lang string, specPath string, verbose bool,
 		}
 	}
 
-	oas, err := convert(tenant, code, lang, spec)
+	oas, err := convert(apiKey, code, lang, spec)
 	if err != nil {
 		return err
 	}
@@ -80,7 +80,7 @@ func GenerateOAS(root string, lang string, specPath string, verbose bool,
 	return nil
 }
 
-func generate(tenant string, files []*pb.File, lang string, spec []byte) (string, error) {
+func generate(apiKey string, files []*pb.File, lang string, spec []byte) (string, error) {
 
 	conn, err := buildGRPCConnection()
 	if err != nil {
@@ -90,7 +90,7 @@ func generate(tenant string, files []*pb.File, lang string, spec []byte) (string
 
 	response, err := pb.NewFileServiceClient(conn).
 		CreateOAS(context.Background(), &pb.CreateOASRequest{
-			Tenant:   tenant,
+			ApiKey:   apiKey,
 			Language: lang,
 			Files:    files,
 			Spec:     spec,

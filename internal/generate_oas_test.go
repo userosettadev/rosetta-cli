@@ -13,7 +13,7 @@ import (
 
 func TestGenerateOAS(t *testing.T) {
 
-	require.NoError(t, os.Setenv(env.EnvTenantKey, "test-tenant"))
+	require.NoError(t, os.Setenv(env.EnvKeyApiKey, "test-api-key"))
 	require.NoError(t, internal.GenerateOAS(".", common.LangGo, "", false,
 		func(string, []*pb.File, string, []byte) (string, error) {
 			return "", nil
