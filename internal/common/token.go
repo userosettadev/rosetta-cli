@@ -1,8 +1,8 @@
 package common
 
 import (
-	pb "github.com/userosettadev/rosetta-cli/internal/api"
 	"github.com/pkoukk/tiktoken-go"
+	pb "github.com/userosettadev/rosetta-cli/api"
 )
 
 func CountTokensMultipleText(files []*pb.File) (int, error) {

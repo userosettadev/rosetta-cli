@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v4.25.3
-// source: protocs/create_oas.pb
+// source: internal/api/create_oas.pb
 
 package api
 
@@ -103,5 +103,5 @@ var FileService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "protocs/create_oas.pb",
+	Metadata: "internal/api/create_oas.pb",
 }
