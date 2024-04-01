@@ -10,11 +10,13 @@ var (
 	instance *Env
 )
 
-const EnvHomeKey = "ROSETTA_HOME"
-const EnvTenantKey = "ROSETTA_TENANT"
+const (
+	EnvKeyHome   = "ROSETTA_HOME"
+	EnvKeyApiKey = "ROSETTA_API_KEY"
+)
 
 type Env struct {
-	tenant string
+	apiKey string
 	home   string
 }
 
@@ -30,11 +32,11 @@ func GetInstance() *Env {
 
 func (e *Env) initialize() {
 
-	e.home = os.Getenv(EnvHomeKey)
+	e.home = os.Getenv(EnvKeyHome)
 	if e.home == "" {
 		e.home = "rosetta-ztdrjhl5kq-uc.a.run.app:443"
 	}
-	e.tenant = os.Getenv(EnvTenantKey)
+	e.apiKey = os.Getenv(EnvKeyApiKey)
 }
 
 func (e *Env) GetHome() string {
@@ -42,7 +44,7 @@ func (e *Env) GetHome() string {
 	return e.home
 }
 
-func (e *Env) GetTenant() string {
+func (e *Env) GetApiKey() string {
 
-	return e.tenant
+	return e.apiKey
 }

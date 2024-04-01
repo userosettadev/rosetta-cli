@@ -11,6 +11,6 @@ import (
 func TestEnv_GetKey(t *testing.T) {
 
 	const value = "test-me"
-	require.NoError(t, os.Setenv(env.EnvTenantKey, value))
-	require.Equal(t, value, env.GetInstance().GetTenant())
+	require.NoError(t, os.Setenv(env.EnvKeyApiKey, value))
+	require.Equal(t, value, env.GetInstance().GetApiKey())
 }
