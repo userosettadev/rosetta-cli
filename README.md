@@ -6,14 +6,9 @@
 Rosetta is a service that converts code into OpenAPI specification.
 
 ### Limitations
+- **Supported Languages**: Go
 - **Number of Runs**: The number of runs allowed is based on your account type.
 - **Project Size**: The maximum project size that Rosetta can analyze is 70K tokens.
-
-## Setup
-Before using Rosetta, you need to set the `ROSETTA_API_KEY` environment variable:
-```
-export ROSETTA_API_KEY=<your_api_key>
-```
 
 ## Installation
 
@@ -34,7 +29,13 @@ For Windows, you can download the Rosetta executable from the [releases page](TO
 ## Verify Installation
 After the installation is complete, you can verify it by running the following command (or executing the appropriate method for your installation):
 ```
-rosetta version
+rosetta --version
+```
+
+## Setup
+Before using Rosetta, you need to set the `ROSETTA_API_KEY` environment variable:
+```
+export ROSETTA_API_KEY=<your_api_key>
 ```
 
 ## Running Rosetta
