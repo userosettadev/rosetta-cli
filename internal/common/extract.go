@@ -52,7 +52,7 @@ func ExtractCode(root string, lang string, verbose bool) ([]*pb.File, error) {
 		return nil, err
 	}
 	if len(code) == 0 {
-		return nil, fmt.Errorf("could not find code files in %s", root)
+		return nil, fmt.Errorf("could not find %s files in %s", lang, root)
 	}
 
 	return code, nil
