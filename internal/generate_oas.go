@@ -9,7 +9,7 @@ import (
 	"strings"
 
 	"github.com/spf13/cobra"
-	pb "github.com/userosettadev/rosetta-cli/internal/api"
+	pb "github.com/userosettadev/rosetta-cli/api"
 	"github.com/userosettadev/rosetta-cli/internal/common"
 	"github.com/userosettadev/rosetta-cli/internal/env"
 	"google.golang.org/grpc"

@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	pb "github.com/userosettadev/rosetta-cli/internal/api"
+	pb "github.com/userosettadev/rosetta-cli/api"
 	"github.com/userosettadev/rosetta-cli/internal/config"
 )
 

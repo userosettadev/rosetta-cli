@@ -5,8 +5,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
+	pb "github.com/userosettadev/rosetta-cli/api"
 	"github.com/userosettadev/rosetta-cli/internal"
-	pb "github.com/userosettadev/rosetta-cli/internal/api"
 	"github.com/userosettadev/rosetta-cli/internal/common"
 	"github.com/userosettadev/rosetta-cli/internal/env"
 )
