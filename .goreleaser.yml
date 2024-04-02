@@ -1,5 +1,5 @@
 builds:
- - binary: rosetta-cli
+ - binary: rosetta
    goos:
      - darwin
      - linux
