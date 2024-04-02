@@ -17,6 +17,7 @@ release:
 
 universal_binaries:
  - replace: true
+   name_template: "rosetta"   
 
 brews:
  -
@@ -46,7 +47,7 @@ nfpms:
 
     # Template to your app's homepage.
     # Default is empty.
-    homepage: "https://github.com/userosettadev/docs"
+    homepage: "https://github.com/userosettadev"
 
     # Your app's maintainer (probably you).
     # Default is empty.
