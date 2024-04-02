@@ -6,7 +6,7 @@
 Rosetta is a service that converts code into OpenAPI specification.
 
 ### Limitations
-- **Supported Languages**: Go
+- **Supported Languages**: Currently, _Rosetta_ exclusively supports Go. However, we are actively working on expanding language support. Stay tuned for updates :)
 - **Number of Runs**: The number of runs allowed is based on your account type.
 - **Project Size**: The maximum project size is based on your account type.
 
