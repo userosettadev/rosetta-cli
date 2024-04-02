@@ -54,4 +54,4 @@ This command will analyze the Go code in the `./myapp` directory and generate an
 ### Docker
 Rosetta is also available as a Docker image:
 ```bash
-docker run --rm -v $PWD:/app -w /app -e ROSETTA_API_KEY=$ROSETTA_API_KEY effoeffi/rosetta:main gen /path/to/code -l go
+docker run --rm -v $PWD:/app -w /app -e ROSETTA_API_KEY=$ROSETTA_API_KEY ghcr.io/userosettadev/rosetta-cli gen /path/to/code -l go
