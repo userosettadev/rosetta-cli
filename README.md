@@ -15,7 +15,7 @@ Rosetta is a service that converts code into OpenAPI specification.
 ### macOS
 Rosetta can be installed on macOS using [Homebrew](https://brew.sh/):
 ```bash
-brew tap userosettadev/homebrew-rosetta
+brew tap userosettadev/rosetta
 brew install rosetta
 ```
 
