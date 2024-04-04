@@ -109,7 +109,7 @@ func buildGRPCConnection() (*grpc.ClientConn, error) {
 
 	host := env.GetInstance().GetHome()
 	if strings.HasPrefix(host, "localhost:") {
-		conn, err := grpc.Dial(host, grpc.WithTransportCredentials(insecure.NewCredentials()))
+		conn, err := grpc.NewClient(host, grpc.WithTransportCredentials(insecure.NewCredentials()))
 		if err != nil {
 			return nil, err
 		}
@@ -124,7 +124,7 @@ func buildGRPCConnection() (*grpc.ClientConn, error) {
 	cred := credentials.NewTLS(&tls.Config{
 		RootCAs: systemRoots,
 	})
-	conn, err := grpc.Dial(host, grpc.WithAuthority(host), grpc.WithTransportCredentials(cred))
+	conn, err := grpc.NewClient(host, grpc.WithAuthority(host), grpc.WithTransportCredentials(cred))
 	if err != nil {
 		return nil, err
 	}
