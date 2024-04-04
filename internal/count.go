@@ -6,6 +6,7 @@ import (
 
 	"github.com/spf13/cobra"
 	"github.com/userosettadev/rosetta-cli/internal/common"
+	"github.com/userosettadev/rosetta-cli/token"
 )
 
 func GetCommandCountTokens() *cobra.Command {
@@ -52,10 +53,5 @@ func CountTokens(root string, lang string, verbose bool) (int, error) {
 		return -1, err
 	}
 
-	res, err := common.CountTokensMultipleText(code)
-	if err != nil {
-		return -1, err
-	}
-
-	return res, nil
+	return token.CountMultipleFiles(code), nil
 }

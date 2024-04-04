@@ -1,17 +1,27 @@
-package common_test
+package token_test
 
 import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"github.com/userosettadev/rosetta-cli/internal/common"
+	"github.com/userosettadev/rosetta-cli/api"
+	"github.com/userosettadev/rosetta-cli/token"
 )
 
 func TestCountTokens(t *testing.T) {
 
-	count, err := common.CountTokens(getTestPrompt())
-	require.NoError(t, err)
-	require.Equal(t, 112, count)
+	require.Equal(t, 112, token.Count(getTestPrompt()))
+}
+
+func TestCountMultipleFiles(t *testing.T) {
+
+	require.Equal(t, 5, token.CountMultipleFiles([]*api.File{{
+		Path:    "internal/app.go",
+		Content: []byte("package internal"),
+	}, {
+		Path:    "util/run.go",
+		Content: []byte("package util\n"),
+	}}))
 }
 
 func getTestPrompt() string {
