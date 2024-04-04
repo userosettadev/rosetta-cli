@@ -12,6 +12,11 @@ Rosetta is a service that converts code into OpenAPI specification.
 
 ## Installation
 
+### Install with Go
+```bash
+go install github.com/userosettadev/rosetta-cli@latest
+```
+
 ### macOS
 Rosetta can be installed on macOS using [Homebrew](https://brew.sh/):
 ```bash
