@@ -43,7 +43,7 @@ Before using Rosetta, you need to set the `ROSETTA_API_KEY` environment variable
 export ROSETTA_API_KEY=<your_api_key>
 ```
 
-## Running Rosetta
+## Running Rosetta - Generating an OpenAPI Spec
 To generate an OpenAPI specification from your code using Rosetta, you can use the `gen` command followed by the path to your code and the programming language.
 ```
 rosetta gen /path/to/code -l <language>
