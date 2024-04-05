@@ -1,6 +1,6 @@
 VERSION=$(shell git describe --always --tags | cut -d "v" -f 2)
 LINKER_FLAGS=-s -w -X github.com/userosettadev/rosetta-cli/build.Version=${VERSION}
-GOLANGCILINT_VERSION=v1.52.2
+GOLANGCILINT_VERSION=v1.57.2
 
 .PHONY: build
 build:  ## Go build
