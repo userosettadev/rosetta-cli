@@ -17,6 +17,7 @@ message CreateOASRequest {
 
 message CreateOASResponse {
   string spec = 1;
+  string error = 2;
 }
 
 service FileService {

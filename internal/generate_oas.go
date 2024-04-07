@@ -101,6 +101,9 @@ func generate(apiKey string, files []*pb.File, lang string, spec []byte) (string
 		}
 		return "", err
 	}
+	if response.Error != "" {
+		return "", errors.New(response.Error)
+	}
 
 	return response.Spec, nil
 }
