@@ -1,11 +1,12 @@
 [![CI](https://github.com/userosettadev/rosetta-cli/actions/workflows/go.yml/badge.svg)](https://github.com/userosettadev/rosetta-cli/actions)
 [![Go Report Card](https://goreportcard.com/badge/github.com/userosettadev/rosetta-cli)](https://goreportcard.com/report/github.com/userosettadev/rosetta-cli)
 [![codecov](https://codecov.io/gh/userosettadev/rosetta-cli/graph/badge.svg?token=XOWMEPON83)](https://codecov.io/gh/userosettadev/rosetta-cli)
+[![Latest Git Tag](https://img.shields.io/github/tag/userosettadev/rosetta-cli.svg)](https://github.com/userosettadev/rosetta-cli/releases)
 
 # Getting Started
 Rosetta is a service that automatically generates an OpenAPI specification from code.
 
-### Limitations
+## Limitations
 - **Supported Languages**: Currently, _Rosetta_ exclusively supports Go. However, we are actively working on expanding language support.  
 If you want to support another language, [please let us know](https://github.com/userosettadev/rosetta-cli/discussions/5).
 - **Number of Runs**: The number of runs allowed is based on your account type.
@@ -43,7 +44,7 @@ Before using Rosetta, you need to set the `ROSETTA_API_KEY` environment variable
 ```
 export ROSETTA_API_KEY=<your_api_key>
 ```
-To get a key, [signup to Rosetta](https://www.userosetta.com).
+To get a key, [signup to Rosetta](https://www.userosetta.com/).
 
 ## Running Rosetta - Generating an OpenAPI Spec
 To generate an OpenAPI specification from your code using Rosetta, you can use the `gen` command followed by the path to your code and the programming language.
