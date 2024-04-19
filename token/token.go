@@ -23,7 +23,7 @@ func Count(text string) int {
 	tiktoken.SetBpeLoader(tiktoken_loader.NewOfflineLoader())
 	tke, err := tiktoken.GetEncoding("cl100k_base")
 	if err != nil {
-		slog.Debug("failed to load encoding", "error", err)
+		slog.Error("failed to load encoding, using estimation", "error", err)
 		return len([]rune(text)) / 4
 	}
 
