@@ -11,6 +11,11 @@ import (
 	"github.com/userosettadev/rosetta-cli/internal/env"
 )
 
+func TestGetCommandGenerateOAS(t *testing.T) {
+
+	require.NotNil(t, internal.GetCommandGenerateOAS())
+}
+
 func TestGenerateOAS(t *testing.T) {
 
 	require.NoError(t, os.Setenv(env.EnvKeyApiKey, "test-api-key"))
