@@ -111,23 +111,19 @@ func generate(apiKey string, files []*pb.File, lang string, spec []byte) (string
 func buildGRPCConnection() (*grpc.ClientConn, error) {
 
 	host := env.GetInstance().GetHome()
+	opts := []grpc.DialOption{grpc.WithAuthority(host)}
+
 	if strings.HasPrefix(host, "localhost:") {
-		conn, err := grpc.NewClient(host, grpc.WithTransportCredentials(insecure.NewCredentials()))
+		opts = append(opts, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	} else {
+		systemRoots, err := x509.SystemCertPool()
 		if err != nil {
 			return nil, err
 		}
-
-		return conn, nil
+		opts = append(opts, grpc.WithTransportCredentials(credentials.NewTLS(&tls.Config{RootCAs: systemRoots})))
 	}
 
-	systemRoots, err := x509.SystemCertPool()
-	if err != nil {
-		return nil, err
-	}
-	cred := credentials.NewTLS(&tls.Config{
-		RootCAs: systemRoots,
-	})
-	conn, err := grpc.NewClient(host, grpc.WithAuthority(host), grpc.WithTransportCredentials(cred))
+	conn, err := grpc.Dial(host, opts...)
 	if err != nil {
 		return nil, err
 	}
