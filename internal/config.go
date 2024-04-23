@@ -9,7 +9,7 @@ import (
 
 func GetCommandConfig() *cobra.Command {
 
-	cmd := cobra.Command{
+	return &cobra.Command{
 		Use:   "config",
 		Short: "Create a configuration file",
 		Long:  "Create a configuration file",
@@ -22,6 +22,4 @@ func GetCommandConfig() *cobra.Command {
 			return nil
 		},
 	}
-
-	return &cmd
 }
