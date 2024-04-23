@@ -11,7 +11,8 @@ import (
 )
 
 const (
-	LangGo = "go"
+	LangGo         = "go"
+	LangJavaScript = "javascript"
 )
 
 func GetLanguage(input string) (string, error) {
@@ -23,8 +24,8 @@ func GetLanguage(input string) (string, error) {
 		return "python", nil
 	} else if res == "java" {
 		return "java", nil
-	} else if res == "js" || res == "javascript" {
-		return "javascript", nil
+	} else if res == "js" || res == LangJavaScript {
+		return LangJavaScript, nil
 	} else if res == "ts" || res == "typescript" {
 		return "typescript", nil
 	} else if res == "csharp" || res == "cs" {

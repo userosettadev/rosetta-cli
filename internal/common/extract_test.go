@@ -25,3 +25,9 @@ func TestExtractCode(t *testing.T) {
 	_, err := common.ExtractCode(".", common.LangGo, true)
 	require.NoError(t, err)
 }
+
+func TestExtractCode_Empty(t *testing.T) {
+
+	_, err := common.ExtractCode(".", common.LangJavaScript, true)
+	require.Error(t, err)
+}
