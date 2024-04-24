@@ -14,6 +14,7 @@ func Run(args []string, stdout io.Writer, stderr io.Writer) int {
 		Short: "Code to OpenAPI Specification",
 	}
 
+	rootCmd.SetArgs(args[1:])
 	rootCmd.SetOut(stdout)
 	rootCmd.SetErr(stderr)
 	rootCmd.Version = build.Version
