@@ -1,7 +1,9 @@
 package internal_test
 
 import (
+	"bytes"
 	"io"
+	"strconv"
 	"strings"
 	"testing"
 
@@ -11,7 +13,13 @@ import (
 
 func TestRun_CountCommand(t *testing.T) {
 
-	require.Equal(t, 0, internal.Run(cmdToArgs("rosetta count . -l go"), io.Discard, io.Discard))
+	buf := new(bytes.Buffer)
+
+	require.Equal(t, 0, internal.Run(cmdToArgs("rosetta count . -l go"), buf, io.Discard))
+
+	tokens, err := strconv.Atoi(strings.Replace(buf.String(), "\n", "", -1))
+	require.NoError(t, err)
+	require.True(t, tokens > 0)
 }
 
 func cmdToArgs(cmd string) []string {

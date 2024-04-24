@@ -2,7 +2,6 @@ package internal
 
 import (
 	"errors"
-	"fmt"
 
 	"github.com/spf13/cobra"
 	"github.com/userosettadev/rosetta-cli/internal/common"
@@ -30,7 +29,7 @@ func GetCommandCountTokens() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			fmt.Println(tokens)
+			cmd.Println(tokens)
 
 			return nil
 		},
@@ -53,5 +52,5 @@ func CountTokens(root string, lang string, verbose bool) (int, error) {
 		return -1, err
 	}
 
-	return token.CountMultipleFiles(code), nil
+	return token.CountFiles(code), nil
 }
