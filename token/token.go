@@ -8,7 +8,7 @@ import (
 	pb "github.com/userosettadev/rosetta-cli/api"
 )
 
-func CountMultipleFiles(files []*pb.File) int {
+func CountFiles(files []*pb.File) int {
 
 	res := 0
 	for _, currFile := range files {

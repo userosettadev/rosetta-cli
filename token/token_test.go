@@ -15,7 +15,7 @@ func TestCountTokens(t *testing.T) {
 
 func TestCountMultipleFiles(t *testing.T) {
 
-	require.Equal(t, 5, token.CountMultipleFiles([]*api.File{{
+	require.Equal(t, 5, token.CountFiles([]*api.File{{
 		Path:    "internal/app.go",
 		Content: []byte("package internal"),
 	}, {
