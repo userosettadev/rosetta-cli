@@ -22,6 +22,11 @@ func TestRun_CountCommand(t *testing.T) {
 	require.True(t, tokens > 0)
 }
 
+func TestRun_CountCommand_NoLang(t *testing.T) {
+
+	require.Equal(t, 1, internal.Run(cmdToArgs("rosetta count ."), io.Discard, io.Discard))
+}
+
 func cmdToArgs(cmd string) []string {
 
 	return strings.Fields(cmd)
