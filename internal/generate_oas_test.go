@@ -18,9 +18,14 @@ func TestGetCommandGenerateOAS(t *testing.T) {
 
 func TestGenerateOAS(t *testing.T) {
 
+	const testSpec = "test spec"
 	require.NoError(t, os.Setenv(env.EnvKeyApiKey, "test-api-key"))
-	require.NoError(t, internal.GenerateOAS(".", common.LangGo, "", false,
+
+	spec, err := internal.GenerateOAS(".", common.LangGo, "", false,
 		func(string, []*pb.File, string, []byte) (string, error) {
-			return "", nil
-		}))
+			return testSpec, nil
+		})
+
+	require.NoError(t, err)
+	require.Equal(t, testSpec, spec)
 }
