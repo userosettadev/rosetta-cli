@@ -14,3 +14,8 @@ func TestCountTokens(t *testing.T) {
 	require.NoError(t, err)
 	require.True(t, count > 0)
 }
+
+func TestGetCommandCountTokens(t *testing.T) {
+
+	require.NotNil(t, internal.GetCommandCountTokens())
+}

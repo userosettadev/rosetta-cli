@@ -35,7 +35,13 @@ func GetCommandGenerateOAS() *cobra.Command {
 			// by now flags have been parsed successfully, so we don't need to show usage on any errors
 			cmd.Root().SilenceUsage = true
 
-			return GenerateOAS(args[0], lang, specPath, verbose, generate)
+			spec, err := GenerateOAS(args[0], lang, specPath, verbose, generate)
+			if err != nil {
+				return err
+			}
+			cmd.Println(spec)
+
+			return nil
 		},
 	}
 	cmd.Flags().StringVarP(&lang, "lang", "l", "", "Programming language")
@@ -46,38 +52,32 @@ func GetCommandGenerateOAS() *cobra.Command {
 }
 
 func GenerateOAS(root string, lang string, specPath string, verbose bool,
-	convert func(string, []*pb.File, string, []byte) (string, error)) error {
+	convert func(string, []*pb.File, string, []byte) (string, error)) (string, error) {
 
 	apiKey := env.GetInstance().GetApiKey()
 	if apiKey == "" || len(apiKey) > 40 {
-		return fmt.Errorf("please set %s environment variable", env.EnvKeyApiKey)
+		return "", fmt.Errorf("please set %s environment variable", env.EnvKeyApiKey)
 	}
 
 	lang, err := common.GetLanguage(lang)
 	if err != nil {
-		return err
+		return "", err
 	}
 
 	code, err := common.ExtractCode(root, lang, verbose)
 	if err != nil {
-		return err
+		return "", err
 	}
 
 	var spec []byte
 	if specPath != "" && specPath != "na" {
 		spec, err = common.ReadFile(specPath, verbose)
 		if err != nil {
-			return err
+			return "", err
 		}
 	}
 
-	oas, err := convert(apiKey, code, lang, spec)
-	if err != nil {
-		return err
-	}
-	fmt.Print(oas + "\n")
-
-	return nil
+	return convert(apiKey, code, lang, spec)
 }
 
 func generate(apiKey string, files []*pb.File, lang string, spec []byte) (string, error) {
