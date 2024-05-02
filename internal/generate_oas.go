@@ -6,6 +6,7 @@ import (
 	"crypto/x509"
 	"errors"
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/spf13/cobra"
@@ -21,6 +22,7 @@ func GetCommandGenerateOAS() *cobra.Command {
 
 	var lang string
 	var specPath string
+	var output string
 	var verbose bool
 
 	cmd := cobra.Command{
@@ -39,6 +41,10 @@ func GetCommandGenerateOAS() *cobra.Command {
 			if err != nil {
 				return err
 			}
+
+			if output != "" {
+				return os.WriteFile(output, []byte(spec), 0644)
+			}
 			cmd.Println(spec)
 
 			return nil
@@ -46,6 +52,7 @@ func GetCommandGenerateOAS() *cobra.Command {
 	}
 	cmd.Flags().StringVarP(&lang, "lang", "l", "", "Programming language")
 	cmd.Flags().StringVarP(&specPath, "spec", "s", "", "Path to old OpenAPI spec")
+	cmd.Flags().StringVarP(&output, "output", "o", "", "Write the resulting OpenAPI specification to the specified output file instead of the console. If the specified output file already exists, it will be overwritten")
 	cmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "Enable verbose output")
 
 	return &cmd
