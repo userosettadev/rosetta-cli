@@ -2,8 +2,6 @@ package internal
 
 import (
 	"context"
-	"crypto/tls"
-	"crypto/x509"
 	"errors"
 	"fmt"
 	"os"
@@ -13,9 +11,6 @@ import (
 	pb "github.com/userosettadev/rosetta-cli/api"
 	"github.com/userosettadev/rosetta-cli/internal/common"
 	"github.com/userosettadev/rosetta-cli/internal/env"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
-	"google.golang.org/grpc/credentials/insecure"
 )
 
 func GetCommandGenerateOAS() *cobra.Command {
@@ -89,7 +84,7 @@ func GenerateOAS(root string, lang string, specPath string, verbose bool,
 
 func generate(apiKey string, files []*pb.File, lang string, spec []byte) (string, error) {
 
-	conn, err := buildGRPCConnection()
+	conn, err := common.BuildGRPCConnection()
 	if err != nil {
 		return "", err
 	}
@@ -113,27 +108,4 @@ func generate(apiKey string, files []*pb.File, lang string, spec []byte) (string
 	}
 
 	return response.Spec, nil
-}
-
-func buildGRPCConnection() (*grpc.ClientConn, error) {
-
-	host := env.GetInstance().GetHome()
-	opts := []grpc.DialOption{grpc.WithAuthority(host)}
-
-	if strings.HasPrefix(host, "localhost:") {
-		opts = append(opts, grpc.WithTransportCredentials(insecure.NewCredentials()))
-	} else {
-		systemRoots, err := x509.SystemCertPool()
-		if err != nil {
-			return nil, err
-		}
-		opts = append(opts, grpc.WithTransportCredentials(credentials.NewTLS(&tls.Config{RootCAs: systemRoots})))
-	}
-
-	conn, err := grpc.Dial(host, opts...)
-	if err != nil {
-		return nil, err
-	}
-
-	return conn, nil
 }
