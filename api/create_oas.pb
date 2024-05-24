@@ -20,6 +20,9 @@ message CreateOASResponse {
   string error = 2;
 }
 
+// *** GRPC Health Checking Protocol ***
+// https://github.com/grpc/grpc/blob/master/doc/health-checking.md
+
 message HealthCheckRequest {
   string service = 1;
 }
