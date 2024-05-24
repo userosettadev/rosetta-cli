@@ -19,6 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
+	FileService_Check_FullMethodName     = "/rosetta.FileService/Check"
 	FileService_CreateOAS_FullMethodName = "/rosetta.FileService/CreateOAS"
 )
 
@@ -26,6 +27,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FileServiceClient interface {
+	Check(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (*HealthCheckResponse, error)
 	CreateOAS(ctx context.Context, in *CreateOASRequest, opts ...grpc.CallOption) (*CreateOASResponse, error)
 }
 
@@ -35,6 +37,15 @@ type fileServiceClient struct {
 
 func NewFileServiceClient(cc grpc.ClientConnInterface) FileServiceClient {
 	return &fileServiceClient{cc}
+}
+
+func (c *fileServiceClient) Check(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (*HealthCheckResponse, error) {
+	out := new(HealthCheckResponse)
+	err := c.cc.Invoke(ctx, FileService_Check_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *fileServiceClient) CreateOAS(ctx context.Context, in *CreateOASRequest, opts ...grpc.CallOption) (*CreateOASResponse, error) {
@@ -50,6 +61,7 @@ func (c *fileServiceClient) CreateOAS(ctx context.Context, in *CreateOASRequest,
 // All implementations should embed UnimplementedFileServiceServer
 // for forward compatibility
 type FileServiceServer interface {
+	Check(context.Context, *HealthCheckRequest) (*HealthCheckResponse, error)
 	CreateOAS(context.Context, *CreateOASRequest) (*CreateOASResponse, error)
 }
 
@@ -57,6 +69,9 @@ type FileServiceServer interface {
 type UnimplementedFileServiceServer struct {
 }
 
+func (UnimplementedFileServiceServer) Check(context.Context, *HealthCheckRequest) (*HealthCheckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Check not implemented")
+}
 func (UnimplementedFileServiceServer) CreateOAS(context.Context, *CreateOASRequest) (*CreateOASResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOAS not implemented")
 }
@@ -70,6 +85,24 @@ type UnsafeFileServiceServer interface {
 
 func RegisterFileServiceServer(s grpc.ServiceRegistrar, srv FileServiceServer) {
 	s.RegisterService(&FileService_ServiceDesc, srv)
+}
+
+func _FileService_Check_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HealthCheckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FileServiceServer).Check(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FileService_Check_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FileServiceServer).Check(ctx, req.(*HealthCheckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _FileService_CreateOAS_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -97,6 +130,10 @@ var FileService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "rosetta.FileService",
 	HandlerType: (*FileServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Check",
+			Handler:    _FileService_Check_Handler,
+		},
 		{
 			MethodName: "CreateOAS",
 			Handler:    _FileService_CreateOAS_Handler,

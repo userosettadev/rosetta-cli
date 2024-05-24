@@ -20,6 +20,21 @@ message CreateOASResponse {
   string error = 2;
 }
 
+message HealthCheckRequest {
+  string service = 1;
+}
+
+message HealthCheckResponse {
+  enum ServingStatus {
+    UNKNOWN = 0;
+    SERVING = 1;
+    NOT_SERVING = 2;
+    SERVICE_UNKNOWN = 3;  // Used only by the Watch method.
+  }
+  ServingStatus status = 1;
+}
+
 service FileService {
+  rpc Check(HealthCheckRequest) returns (HealthCheckResponse);
   rpc CreateOAS (CreateOASRequest) returns (CreateOASResponse);
 }
