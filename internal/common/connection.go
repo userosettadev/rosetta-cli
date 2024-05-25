@@ -26,7 +26,7 @@ func BuildGRPCConnection() (*grpc.ClientConn, error) {
 		opts = append(opts, grpc.WithTransportCredentials(credentials.NewTLS(&tls.Config{RootCAs: systemRoots})))
 	}
 
-	conn, err := grpc.Dial(host, opts...)
+	conn, err := grpc.NewClient(host, opts...)
 	if err != nil {
 		return nil, err
 	}
