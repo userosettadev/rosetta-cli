@@ -1,7 +1,6 @@
 module github.com/userosettadev/rosetta-cli
 
-go 1.22.5
-toolchain go1.22.9
+go 1.23
 
 require (
 	github.com/pkoukk/tiktoken-go v0.1.7
