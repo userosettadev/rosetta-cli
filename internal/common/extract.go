@@ -66,10 +66,12 @@ func visit(root string, filter *config.Filter, verbose bool) ([]*pb.File, error)
 		return nil, fmt.Errorf("invalid path %s", root)
 	}
 
+	// root is a directory
 	if fileInfo.IsDir() {
 		return visitDir(root, filter, verbose)
 	}
 
+	// root is a file
 	content, err := ReadFile(root, verbose)
 	if err != nil {
 		return nil, err

@@ -19,7 +19,12 @@ func Run(args []string, stdout io.Writer, stderr io.Writer) int {
 	rootCmd.SetErr(stderr)
 	rootCmd.Version = build.Version
 
-	rootCmd.AddCommand(GetCommandHealth(), GetCommandCountTokens(), GetCommandGenerateOAS(), GetCommandConfig())
+	rootCmd.AddCommand(
+		GetCommandHealth(),
+		GetCommandCountTokens(),
+		GetCommandGenerateOAS(),
+		GetCommandConfig(),
+	)
 
 	if err := rootCmd.Execute(); err != nil {
 		return 1
